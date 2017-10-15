@@ -1,0 +1,22 @@
+{
+    "name": "whc/yii2-file-manager",
+    "description": "file manager",
+    "type": "yii2-extension",
+    "keywords": ["yii2","extension","file","filemanager"],
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "name": "ehsan rezaei",
+            "email": "mr.rezaee121@gmail.com"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "*",
+        "creocoder/yii2-flysystem": "0.8.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "whc\\filemanager\\": ""
+        }
+    }
+}
