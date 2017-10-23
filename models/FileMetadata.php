@@ -12,15 +12,8 @@ use yii\db\ActiveRecord;
  * @property integer $file_id
  * @property string $metadata
  * @property string $value
- * @property string $created_time
- * @property integer $created_user_id
- * @property string $modified_time
- * @property integer $modified_user_id
- * @property string $deleted_time
  *
  * @property File $file
- * @property User $createdUser
- * @property User $modifiedUser
  */
 class FileMetadata extends ActiveRecord
 {
@@ -39,12 +32,10 @@ class FileMetadata extends ActiveRecord
     {
         return [
             [['file_id', 'metadata', 'value'], 'required' , 'except' => 'getByParams'],
-            [['file_id', 'created_user_id', 'modified_user_id'], 'integer'],
+            [['file_id'], 'integer'],
             [['created_time', 'modified_time', 'deleted_time'], 'safe'],
             [['metadata', 'value'], 'string', 'max' => 255],
             [['file_id'], 'exist', 'skipOnError' => true, 'targetClass' => File::className(), 'targetAttribute' => ['file_id' => 'id']],
-            [['created_user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_user_id' => 'id']],
-            [['modified_user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['modified_user_id' => 'id']],
         ];
     }
 
@@ -58,11 +49,6 @@ class FileMetadata extends ActiveRecord
             'file_id' => Yii::t('app', 'File ID'),
             'metadata' => Yii::t('app', 'Metadata'),
             'value' => Yii::t('app', 'Value'),
-            'created_time' => Yii::t('app', 'Created Time'),
-            'created_user_id' => Yii::t('app', 'Created User ID'),
-            'modified_time' => Yii::t('app', 'Modified Time'),
-            'modified_user_id' => Yii::t('app', 'Modified User ID'),
-            'deleted_time' => Yii::t('app', 'Deleted Time'),
         ];
     }
 
@@ -72,21 +58,5 @@ class FileMetadata extends ActiveRecord
     public function getFile()
     {
         return $this->hasOne(File::className(), ['id' => 'file_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getCreatedUser()
-    {
-        return $this->hasOne(User::className(), ['id' => 'created_user_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getModifiedUser()
-    {
-        return $this->hasOne(User::className(), ['id' => 'modified_user_id']);
     }
 }
