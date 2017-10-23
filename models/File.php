@@ -5,23 +5,25 @@ use Yii;
 use yii\db\ActiveRecord;
 
 /**
-* This is the model class for table "{{%file}}".
-*
-* @property integer $id
-* @property string $file_name
-* @property string $path
-* @property integer $size
-* @property string $mime_type
-* @property string $context
-* @property integer $version
-* @property string $hash
-* @property string $uploaded_time
-* @property integer $uploaded_user_id
-* @property string $deleted_time
-*
-* @property User $uploadedUser
-* @property FileMetadata[] $fileMetadatas
-*/
+ * This is the model class for table "{{%file}}".
+ *
+ * @property integer $id
+ * @property integer $file_storage_id
+ * @property string $file_name
+ * @property string $path
+ * @property integer $size
+ * @property string $mime_type
+ * @property string $context
+ * @property integer $version
+ * @property string $hash
+ * @property string $uploaded_time
+ * @property integer $uploaded_user_id
+ * @property string $deleted_time
+ *
+ * @property FileStorage $fileStorage
+ * @property User $uploadedUser
+ * @property FileMetadata[] $fileMetadatas
+ */
 class File extends ActiveRecord
 {
     /**
