@@ -1,8 +1,8 @@
 {
-    "name": "whc/yii2-file-manager",
-    "description": "file manager",
+    "name": "whc/yii2-flysystem-wrapper",
+    "description": "yii2 flysystem wrapper",
     "type": "yii2-extension",
-    "keywords": ["yii2","extension","file","filemanager"],
+    "keywords": ["yii2","extension","file","filemanager", "flysystem wrapper", "flysystem"],
     "license": "GPL-3.0",
     "authors": [
         {
@@ -17,7 +17,7 @@
     },
     "autoload": {
         "psr-4": {
-            "whc\\filemanager\\": ""
+            "whc\\flysystemwrapper\\": ""
         }
     }
 }
