@@ -1,12 +1,12 @@
 <?php
 
-namespace whc\filemanager;
+namespace whc\flysystemwrapper;
 
 use Integral\Flysystem\Adapter\PDOAdapter;
 use whc\common\components\Query;
-use whc\filemanager\models\File;
-use whc\filemanager\models\FileMetadata;
-use whc\filemanager\models\FileStorage;
+use whc\flysystemwrapper\models\File;
+use whc\flysystemwrapper\models\FileMetadata;
+use whc\flysystemwrapper\models\FileStorage;
 use Yii;
 use yii\db\ActiveQuery;
 use yii\i18n\PhpMessageSource;

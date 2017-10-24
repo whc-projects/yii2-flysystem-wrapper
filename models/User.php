@@ -1,5 +1,5 @@
 <?php
-namespace whc\filemanager\models;
+namespace whc\flysystemwrapper\models;
 
 use Yii;
 use yii\db\ActiveRecord;
