@@ -1,6 +1,6 @@
 yii2 flysystem wrapper
 =================
-yii2 flysystem wrapper
+yii2 flysystem wrapper. [Flysystem](http://flysystem.thephpleague.com/) is a filesystem abstraction which allows you to easily swap out a local filesystem for a remote one.
 
 Installation
 ------------
