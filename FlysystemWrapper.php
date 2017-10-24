@@ -88,6 +88,11 @@ class FlysystemWrapper extends \yii\base\Widget
             ->all();
     }
 
+    /**
+     * read file by hash key
+     * @param $hash
+     * @return bool
+     */
     public function readByHash($hash)
     {
         $fileModel = File::find()->where(['hash' => $hash, 'deleted_time' => null])->one();
@@ -136,7 +141,7 @@ class FlysystemWrapper extends \yii\base\Widget
      * delete a file by hash key
      * @param $hash
      */
-    public static function delete($hash)
+    public static function deleteByHash($hash)
     {
         $fileModel = File::find()->where(['hash' => $hash, 'deleted_time' => null])->one();
         if($fileModel !== null)
