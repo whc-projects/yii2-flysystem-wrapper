@@ -33,15 +33,13 @@ class FlysystemWrapper extends \yii\base\Widget
      */
     public static function upload($files, $data)
     {
-        $pdo = new \PDO(Yii::$app->db->dsn, Yii::$app->db->username, Yii::$app->db->password);
-        $adapter = new PDOAdapter($pdo, 'file_storage');
         $config = new \League\Flysystem\Config;
 
         foreach ((array)$files as $file)
         {
             $filePath = Yii::getAlias($data['path']) . '/' . $file->name;
             $fileContent = file_get_contents($file->tempName);
-            if($adapter->write($filePath, $fileContent, $config) !== false)
+            if(Yii::$app->fs->write($filePath, $fileContent, $config) !== false)
             {
                 $fileModel = new File;
                 $fileModel->file_name = $file->name;
@@ -108,7 +106,7 @@ class FlysystemWrapper extends \yii\base\Widget
             header('Pragma: public');
             header('Content-Length: ' . $fileModel->size);
 
-            echo $fileStorageModel->contents;
+            echo Yii::$app->fs->read($fileStorageModel->path);
         }
         return false;
     }
@@ -123,14 +121,14 @@ class FlysystemWrapper extends \yii\base\Widget
         $fileModel = File::find()
             ->distinct()
             ->select('hash')
-            ->alias('f')
-            ->innerJoinWith(['fileMetadatas' => function (ActiveQuery $query) {
-            $query->alias('fm');
-            }]);
+            ->alias('f');
+
+        $i = 1;
 
         foreach ($metadata as $meta => $value)
         {
-            $fileModel->orWhere(['metadata' => $meta, 'value' => $value]);
+            $fmAlais = 'fm_' . $i++;
+            $fileModel->innerJoin([$fmAlais => FileMetadata::tableName()], "f.id={$fmAlais}.file_id AND {$fmAlais}.metadata=:meta_param AND {$fmAlais}.value=:meta_value", ['meta_param' => $meta, 'meta_value' => $value]);
         }
         $fileModel->andWhere(['f.deleted_time' => null]);
 
@@ -146,12 +144,8 @@ class FlysystemWrapper extends \yii\base\Widget
         $fileModel = File::find()->where(['hash' => $hash, 'deleted_time' => null])->one();
         if($fileModel !== null)
         {
-            $currentDate = (new \DateTime())->format('Y-m-d H:i:s');
-            $fileModel->deleted_time = $currentDate;
-            $fileModel->save();
-
-            $query = new Query();
-            $query->createCommand()->update(FileMetadata::tableName(), ['deleted_time' => $currentDate], ['file_id' => $fileModel->id])->execute();
+            return Yii::$app->fs->delete($fileModel);
         }
+        return false;
     }
 }

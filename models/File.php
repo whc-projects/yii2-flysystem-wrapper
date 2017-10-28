@@ -47,6 +47,8 @@ class File extends ActiveRecord
             [['mime_type'], 'string', 'max' => 25],
             [['context'], 'string', 'max' => 100],
             [['hash'], 'string', 'max' => 64],
+            [['path'], 'unique'],
+            [['hash'], 'unique'],
             [['uploaded_user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['uploaded_user_id' => 'id']],
         ];
     }
