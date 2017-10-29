@@ -87,7 +87,6 @@ $hashKey = 'XXX';
 return FlysystemWrapper::deleteByHash($hashKey);
 ?>
 ```
-note: delete method is logical
 
 search file(s) by metadatas
 ```php
