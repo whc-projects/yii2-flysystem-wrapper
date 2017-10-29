@@ -30,6 +30,14 @@ Usage/Features
 -----
 Once the extension is installed, simply use it in your code by  :
 
+add "fs" to components
+```php
+'fs' => [
+    'class' => 'Integral\Flysystem\Adapter\PDOAdapter', // or other adapters
+    'tableName' => 'file_storage'
+],
+```
+
 upload sample code
 ```php
 <?php
