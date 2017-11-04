@@ -16,6 +16,7 @@ use yii\db\ActiveRecord;
  * @property integer $size
  * @property string $mimetype
  * @property integer $timestamp
+ * @property string $deleted_time
  *
  * @property File[] $files
  */

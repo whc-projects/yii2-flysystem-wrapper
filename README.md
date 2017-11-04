@@ -10,13 +10,13 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-php composer.phar require --prefer-dist whc/yii2-flysystem-wrapper "dev-master"
+php composer.phar require --prefer-dist whc/yii2-flysystem-wrapper "*"
 ```
 
 or add
 
 ```
-"whc/yii2-flysystem-wrapper": "dev-master"
+"whc/yii2-flysystem-wrapper": "*"
 ```
 
 to the require section of your `composer.json` file.
@@ -87,6 +87,7 @@ $hashKey = 'XXX';
 return FlysystemWrapper::deleteByHash($hashKey);
 ?>
 ```
+note: delete method is logical
 
 search file(s) by metadatas
 ```php

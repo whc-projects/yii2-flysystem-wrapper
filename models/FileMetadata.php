@@ -12,6 +12,7 @@ use yii\db\ActiveRecord;
  * @property integer $file_id
  * @property string $metadata
  * @property string $value
+ * @property string $deleted_time
  *
  * @property File $file
  */

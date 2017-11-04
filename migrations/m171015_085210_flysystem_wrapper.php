@@ -36,6 +36,7 @@ class m171015_085210_flysystem_wrapper extends Migration
             'metadata' => $this->string(255)->notNull(),
             'value' => $this->string(255)->notNull(),
             'created_time' => $this->timestamp(),
+            'deleted_time' => $this->timestamp(),
         ], $tableOptions);
 
         $this->createTable('{{%file_storage}}', [
@@ -46,6 +47,7 @@ class m171015_085210_flysystem_wrapper extends Migration
             'size' => $this->integer()->notNull()->defaultValue(0),
             'mimetype' => $this->string(127),
             'timestamp' => $this->integer()->notNull()->defaultValue(0),
+            'deleted_time' => $this->timestamp(),
         ], $tableOptions);
 
         $this->addForeignKey('fk_file_metadata', '{{%file_metadata}}', 'file_id', '{{%file}}', 'id');
