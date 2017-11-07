@@ -32,7 +32,7 @@ class FileMetadata extends ActiveRecord
     public function rules()
     {
         return [
-            [['file_id', 'metadata', 'value'], 'required' , 'except' => 'getByParams'],
+            [['file_id', 'metadata', 'value'], 'required', 'except' => 'getByParams'],
             [['file_id'], 'integer'],
             [['created_time', 'modified_time', 'deleted_time'], 'safe'],
             [['metadata', 'value'], 'string', 'max' => 255],
