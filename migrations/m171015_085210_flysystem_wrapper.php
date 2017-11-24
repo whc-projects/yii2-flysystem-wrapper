@@ -25,9 +25,9 @@ class m171015_085210_flysystem_wrapper extends Migration
             'context' => $this->string(100)->null(),
             'version' => $this->integer()->null(),
             'hash' => $this->string(64)->notNull()->unique(),
-            'uploaded_time' => $this->timestamp(),
+            'uploaded_time' => $this->timestamp()->null(),
             'uploaded_user_id' => $this->integer(),
-            'deleted_time' => $this->timestamp(),
+            'deleted_time' => $this->timestamp()->null(),
         ], $tableOptions);
 
         $this->createTable('{{%file_metadata}}', [
@@ -35,8 +35,8 @@ class m171015_085210_flysystem_wrapper extends Migration
             'file_id' => $this->integer()->notNull(),
             'metadata' => $this->string(255)->notNull(),
             'value' => $this->string(255)->notNull(),
-            'created_time' => $this->timestamp(),
-            'deleted_time' => $this->timestamp(),
+            'created_time' => $this->timestamp()->null(),
+            'deleted_time' => $this->timestamp()->null(),
         ], $tableOptions);
 
         $this->createTable('{{%file_storage}}', [
@@ -47,11 +47,10 @@ class m171015_085210_flysystem_wrapper extends Migration
             'size' => $this->integer()->notNull()->defaultValue(0),
             'mimetype' => $this->string(127),
             'timestamp' => $this->integer()->notNull()->defaultValue(0),
-            'deleted_time' => $this->timestamp(),
+            'deleted_time' => $this->timestamp()->null(),
         ], $tableOptions);
 
         $this->addForeignKey('fk_file_metadata', '{{%file_metadata}}', 'file_id', '{{%file}}', 'id');
-        $this->addForeignKey('fk_file_uploaded_user_id', '{{%file}}', 'uploaded_user_id', '{{%user}}', 'id');
     }
 
     public function safeDown()
