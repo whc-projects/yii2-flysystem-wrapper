@@ -10,13 +10,13 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```shell
-php composer.phar require --prefer-dist whc/yii2-flysystem-wrapper "*"
+php composer.phar require --prefer-dist whc/yii2-flysystem-wrapper "dev-master"
 ```
 
 or add
 
 ```json
-"whc/yii2-flysystem-wrapper": "*"
+"whc/yii2-flysystem-wrapper": "dev-master"
 ```
 
 to the require section of your `composer.json` file.
