@@ -89,10 +89,10 @@ return FlysystemWrapper::deleteByHash($hashKey);
 ```
 note: delete method is logical
 
-search file(s) by metadatas
+search file(s) by metadatas or file model spesial attributes
 ```php
 <?php
-$metadata = ['meta1' => 1, $meta2 => 2];
-return FlysystemWrapper::searchByMetadata($metadata);
+$params = ['meta1' => 1, 'version' => 2];
+return FlysystemWrapper::searchByParams($params);
 ?>
 ```

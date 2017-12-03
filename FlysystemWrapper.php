@@ -112,12 +112,15 @@ class FlysystemWrapper extends \yii\base\Widget
     }
 
     /**
-     * search by metadatas
-     * @param $metadata [key => value]
+     * search by metadata or special file model fields
+     * @param $params
      * @return array|\yii\db\ActiveRecord[]
      */
-    public function searchByMetadata($metadata)
+    public function searchByParams($params)
     {
+        // special fields is fields that have exist in file model.
+        $specialFields = ['context', 'version'];
+
         $fileModel = File::find()
             ->distinct()
             ->select('hash')
@@ -125,8 +128,14 @@ class FlysystemWrapper extends \yii\base\Widget
 
         $i = 1;
 
-        foreach ($metadata as $meta => $value)
+        foreach ($params as $meta => $value)
         {
+            if(in_array($meta, $specialFields))
+            {
+                $fileModel->andWhere([$meta => $value]);
+                continue;
+            }
+
             $fmAlais = 'fm_' . $i++;
             $fileModel->innerJoin([$fmAlais => FileMetadata::tableName()], "f.id={$fmAlais}.file_id AND {$fmAlais}.metadata=:meta_param AND {$fmAlais}.value=:meta_value", ['meta_param' => $meta, 'meta_value' => $value]);
         }
