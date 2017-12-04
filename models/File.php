@@ -40,7 +40,7 @@ class File extends ActiveRecord
     public function rules()
     {
         return [
-            [['file_name', 'path', 'size', 'mime_type', 'hash'], 'required', 'except' => 'getByParams'],
+            [['file_name', 'path', 'size', 'mime_type', 'hash'], 'required' , 'except' => 'getByParams'],
             [['size', 'version', 'uploaded_user_id'], 'integer'],
             [['uploaded_time', 'deleted_time'], 'safe'],
             [['file_name', 'path'], 'string', 'max' => 255],

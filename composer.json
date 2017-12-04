@@ -2,18 +2,15 @@
     "name": "whc/yii2-flysystem-wrapper",
     "description": "yii2 flysystem wrapper",
     "type": "yii2-extension",
-    "keywords": ["yii2", "extension", "file","filemanager", "flysystem wrapper", "flysystem"],
-	 "homepage": "https://github.com/whc-projects/yii2-flysystem-wrapper",
+    "keywords": ["yii2","extension","file","filemanager", "flysystem wrapper", "flysystem"],
     "license": "GPL-3.0",
     "authors": [
         {
             "name": "ehsan rezaei",
-            "email": "mr.rezaee121@gmail.com",
-				"role": "Developer"
+            "email": "mr.rezaee121@gmail.com"
         }
     ],
     "require": {
-        "php": ">=5",
         "yiisoft/yii2": "*",
         "integral/flysystem-pdo-adapter": "1.0.*",
         "creocoder/yii2-flysystem": "0.8.*"
@@ -22,9 +19,5 @@
         "psr-4": {
             "whc\\flysystemwrapper\\": ""
         }
-    },
-    "config": {
-        "platform": {"php": "5.6"},
-        "vendor-dir": "vendor"
     }
 }

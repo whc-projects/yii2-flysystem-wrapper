@@ -36,7 +36,7 @@ class FileStorage extends ActiveRecord
     public function rules()
     {
         return [
-            [['path', 'type'], 'required', 'except' => 'getByParams'],
+            [['path', 'type'], 'required' , 'except' => 'getByParams'],
             [['contents'], 'string'],
             [['size', 'timestamp'], 'integer'],
             [['path'], 'string', 'max' => 255],
