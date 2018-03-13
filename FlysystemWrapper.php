@@ -46,8 +46,7 @@ class FlysystemWrapper extends \yii\base\Widget
                 $fileModel->context = isset($data['context'])? $data['context'] : null;
                 $fileModel->version = isset($data['version'])? $data['version'] : null;
                 $fileModel->hash = sha1(uniqid(rand(), TRUE));
-                $fileModel->save();
-
+                
                 if($fileModel->save())
                 {
                     foreach ((array)$data['metadata'] as $metadata => $value)
